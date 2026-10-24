@@ -18,3 +18,9 @@
 6. Show the backup and restore controls; state that persistence is browser-local.
 
 Do not claim autonomous web research, external delivery, production SaaS authentication or verified live AI output without demonstrating those features.
+
+## Public demo
+
+https://asad-research-desk-studio.onrender.com/scopecraft/
+
+Research Desk and ScopeCraft share a free Render service because the workspace service limit was reached. They have separate browser storage keys. ScopeCraft’s standalone source remains in `asadh-74/genai-Saas-Product`; the host repository contains a deployment copy in `scope_app/`. Changes to ScopeCraft must be synchronized to that deployment copy.

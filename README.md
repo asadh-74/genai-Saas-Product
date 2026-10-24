@@ -45,3 +45,9 @@ AI only adds a draft summary; it does not change source excerpts, prices or deli
 This is a functional portfolio workflow, not a production multi-tenant SaaS. Production deployment would add account authentication, durable server storage, role-based access, distributed limits, encrypted backups, monitoring and operational validation.
 
 Estimates use Decimal arithmetic and round each line to two decimal places before summing. Totals are before tax. Milestones and assumptions are templates, not delivery guarantees.
+
+## Public demo
+
+https://asad-research-desk-studio.onrender.com/scopecraft/
+
+Research Desk and ScopeCraft share a free Render service because the workspace service limit was reached. They have separate browser storage keys. ScopeCraft’s standalone source remains in `asadh-74/genai-Saas-Product`; the host repository contains a deployment copy in `scope_app/`. Changes to ScopeCraft must be synchronized to that deployment copy.
