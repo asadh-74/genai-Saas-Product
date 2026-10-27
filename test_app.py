@@ -45,3 +45,16 @@ def test_invalid_items_currency_and_blank(client):
  p=payload();p['items']=[];assert client.post(ENDPOINT,json=p).status_code==422
  p=payload();p['currency']='XXX';assert client.post(ENDPOINT,json=p).status_code==422
  p=payload();p['client']=' '*10;assert client.post(ENDPOINT,json=p).status_code==422
+
+@pytest.mark.parametrize('field,value',[('client',' x '),('title',' x    '),('objective',' x                    ')])
+def test_padded_short_text_rejected(client,field,value):
+ p=payload();p[field]=value
+ assert client.post(ENDPOINT,json=p).status_code==422
+
+def test_padded_short_item_rejected(client):
+ p=payload();p['items'][0]['name']=' x '
+ assert client.post(ENDPOINT,json=p).status_code==422
+
+def test_nontext_name_rejected(client):
+ p=payload();p['items'][0]['name']=123
+ assert client.post(ENDPOINT,json=p).status_code==422

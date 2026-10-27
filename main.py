@@ -26,9 +26,10 @@ from decimal import Decimal, ROUND_HALF_UP
 class Item(BaseModel):
  name:str=Field(min_length=3,max_length=160)
  hours:Decimal=Field(gt=0,le=500,max_digits=7,decimal_places=2)
- @field_validator('name')
+ @field_validator('name', mode='before')
  @classmethod
  def nonblank(cls,v):
+  if not isinstance(v, str):raise ValueError('Expected text')
   if not v.strip():raise ValueError('Name cannot be blank')
   return v.strip()
 class Brief(BaseModel):
@@ -39,9 +40,10 @@ class Brief(BaseModel):
  currency:str=Field(pattern='^(USD|PKR|EUR|GBP)$')
  items:list[Item]=Field(min_length=1,max_length=12)
  exclusions:str=Field(default='',max_length=2000)
- @field_validator('client','title','objective')
+ @field_validator('client','title','objective', mode='before')
  @classmethod
  def nonblank(cls,v):
+  if not isinstance(v, str):raise ValueError('Expected text')
   if not v.strip():raise ValueError('Cannot be blank')
   return v.strip()
 @app.post('/api/proposal')
